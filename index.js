@@ -1,11 +1,11 @@
-const express = require('express');
+const express = require("express");
 
-const cors = require('cors');
+const cors = require("cors");
 
 const app = express();
-app.get('/api/', cors(), async (req, res, next) => {
+app.get("/api/", cors(), async (req, res, next) => {
   try {
-    const message = 'Hello World!';
+    const message = "Hello World!";
     res.json({ message });
   } catch (err) {
     next(err);
