@@ -9,7 +9,9 @@
         "airbnb",
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:cypress/recommended"
+        "plugin:cypress/recommended", 
+        "prettier",
+        "prettier/react"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -24,8 +26,10 @@
     },
     "plugins": [
         "react",
-        "cypress"
+        "cypress", 
+        "prettier"
     ],
     "rules": {
+        "prettier/prettier": "error"
     }
 }
