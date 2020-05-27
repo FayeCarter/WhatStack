@@ -1,12 +1,15 @@
 const express = require('express');
+const socketio = require('socket.io');
 const http = require('http');
 const cors = require('cors');
 const PORT = process.env.PORT || 5000;
-const router = require('./router');
+// const router = require('./router');
 const app = express();
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 const server = http.createServer(app);
-const io = require('socket.io')(server, { origins: 'http://localhost:3000'});
+const io = socketio(server)
+
+
 
 // app.get('/api/', cors(), async(req, res, next) => {
 //   try {
@@ -17,6 +20,13 @@ const io = require('socket.io')(server, { origins: 'http://localhost:3000'});
 //   }
 // });
 
+app.get('/', cors(), (req, res) => {
+  // res.header('Access-Control-Allow-Origin', 'localhost:3000')
+  res.send('Server is up and running');
+});
+
+app.use(cors())
+// app.use(router);
 
 io.on('connection', (socket) => {
   console.log('We have a new connnection!');
@@ -25,9 +35,9 @@ io.on('connection', (socket) => {
   });
 });
 
-app.use(router);
 
 
-app.listen(PORT, () => {
+
+server.listen(PORT, () => {
   console.log(`Listening on ${PORT}`)
 })
