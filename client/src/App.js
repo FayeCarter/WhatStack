@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import User from "./component/user.js"
+
 class App extends Component {
 
   state = {
@@ -21,7 +23,11 @@ class App extends Component {
 
   render() {
     return (
-      <p>{this.state.message}</p>
+      <div> 
+        <p>{this.state.message}</p>
+        <User />
+      </div>
+      
     )
   }
 }
