@@ -21,9 +21,10 @@ const Chat = ({ location }) => {
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
-    console.log(message)
     
     setMessages([...messages, message])
+
+    setMessage('')
   };
 
   return(
@@ -33,11 +34,10 @@ const Chat = ({ location }) => {
         <div>Welcome {name} to the room</div>
         <div className="display-message-container">{messages.map((mes) => {return(<div className="display-message">{mes}</div>)})}</div>
       </div>
-      <input type="text" className="chat-input" placeholder="Enter message here" onChange={(e) => setMessage(e.target.value)} />
+      <input type="text" className="chat-input" placeholder="Enter message here" value={message} onChange={(e) => setMessage(e.target.value)} />
       <button onClick={handleSubmitMessage}>Submit</button>
     </div>
   );
 }
-
 
 export default Chat;
