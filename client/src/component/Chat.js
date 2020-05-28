@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 const Chat = ({ location }) => {
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
+  const [messages, setMessages] = useState([])
+
 
   const ENDPOINT = 'http://localhost:5000'
 
@@ -19,7 +21,9 @@ const Chat = ({ location }) => {
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
-
+    console.log(message)
+    
+    setMessages([...messages, message])
   };
 
   return(
@@ -27,7 +31,7 @@ const Chat = ({ location }) => {
       <h1>Chat</h1>
       <div className="message-box">
         <div>Welcome {name} to the room</div>
-        <div>{message}</div>
+        <div className="display-message-container">{messages.map((mes) => {return(<div className="display-message">{mes}</div>)})}</div>
       </div>
       <input type="text" className="chat-input" placeholder="Enter message here" onChange={(e) => setMessage(e.target.value)} />
       <button onClick={handleSubmitMessage}>Submit</button>
