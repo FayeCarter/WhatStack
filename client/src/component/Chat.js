@@ -6,24 +6,33 @@ import { Link } from 'react-router-dom';
 
 const Chat = ({ location }) => {
   const [name, setName] = useState('')
+  const [message, setMessage] = useState('')
+
   const ENDPOINT = 'http://localhost:5000'
+
   useEffect(() => {
-    const { name } = queryString.parse(location.search),
-    socket = io(ENDPOINT);
+    const { name } = queryString.parse(location.search);
+    const socket = io(ENDPOINT);
     setName(name);
     console.log(socket);
   });
+
+  const handleSubmitMessage = (e) => {
+    e.preventDefault();
+
+  };
 
   return(
     <div>
       <h1>Chat</h1>
       <div className="message-box">
         <div>Welcome {name} to the room</div>
+        <div>{message}</div>
       </div>
-      <input type="text" className="chat-input" placeholder="Enter message here"></input>
-      <button type="submit">Submit</button>
+      <input type="text" className="chat-input" placeholder="Enter message here" onChange={(e) => setMessage(e.target.value)} />
+      <button onClick={handleSubmitMessage}>Submit</button>
     </div>
-  )
+  );
 }
 
 
