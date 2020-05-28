@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import queryString from 'query-string';
-import io from 'socket.io-client';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import queryString from "query-string";
+import io from "socket.io-client";
+import { Link } from "react-router-dom";
 
-
-const Chat = ({ location }) => {
+const Chat = ({ location }) => { 
   const [name, setName] = useState('')
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([])
-
-
   const ENDPOINT = 'http://localhost:5000'
 
   useEffect(() => {
     const { name } = queryString.parse(location.search);
     const socket = io(ENDPOINT);
     setName(name);
-    console.log(socket);
-  });
+    socket.emit("join", { name });
+    console.log(name);
+  }, [ENDPOINT, location.search]);
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
@@ -26,7 +24,7 @@ const Chat = ({ location }) => {
 
     setMessage('')
   };
-
+  
   return(
     <div>
       <h1>Chat</h1>
