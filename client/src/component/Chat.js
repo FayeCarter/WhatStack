@@ -22,7 +22,7 @@ const Chat = ({ location }) => {
   const handleSubmitMessage = (e) => {
     e.preventDefault();
     
-    setMessages([...messages, message])
+    setMessages([...messages, `${name}: ${message}`])
 
     setMessage('')
   };
