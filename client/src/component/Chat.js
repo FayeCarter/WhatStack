@@ -16,10 +16,13 @@ const Chat = ({ location }) => {
 
   return(
     <div>
-    <h1>Chat</h1>
+      <h1>Chat</h1>
+      <div className="message-box"></div>
+      <input type="text" className="chat-input" placeholder="Enter message here"></input>
+      <button type="submit">Submit</button>
     </div>
   )
 }
 
 
-export default Chat
+export default Chat;
