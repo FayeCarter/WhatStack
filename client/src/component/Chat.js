@@ -17,7 +17,9 @@ const Chat = ({ location }) => {
   return(
     <div>
       <h1>Chat</h1>
-      <div className="message-box"></div>
+      <div className="message-box">
+        <div>Welcome {name} to the room</div>
+      </div>
       <input type="text" className="chat-input" placeholder="Enter message here"></input>
       <button type="submit">Submit</button>
     </div>
