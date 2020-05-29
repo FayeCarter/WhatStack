@@ -17,11 +17,12 @@ app.use(cors());
 
 io.on("connection", (socket) => {
   console.log("We have a new connnection!");
-  socket.on("join", ({ name }) => {
+  socket.on("join", ({ name, room }) => {
+    socket.join(room);
     console.log(name);
   });
-  socket.on("message", ({ name, message }) => {
-    io.emit("message", { name, message });
+  socket.on("message", ({ name, message, room }) => {
+    io.sockets.in(room).emit("message", { name, message });
   });
   socket.on("disconnect", () => {
     console.log("User has left");
