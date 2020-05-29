@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Join from './component/Join.js';
-import Chat from './component/Chat.js';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Join from "./component/Join.js";
+import Chat from "./component/Chat.js";
+import Rooms from "./component/Rooms.js";
 
 const App = () => {
-  return(
+  return (
     <Router>
-      <Route path='/' exact component={ Join }/>
-      <Route path='/chat' exact component={ Chat }/>
+      <Route path="/" exact component={Join} />
+      <Route path="/chat" exact component={Chat} />
+      <Route path="/rooms" exact component={Rooms} />
     </Router>
-    );
-}
+  );
+};
 
 export default App;
 // import './App.css';
@@ -22,7 +24,6 @@ export default App;
 //   state = {
 //     message: ''
 //   }
-
 
 //   componentDidMount() {
 //     this.fetchMessage()
@@ -37,11 +38,11 @@ export default App;
 
 //   render() {
 //     return (
-//       <div> 
+//       <div>
 //         <p>{this.state.message}</p>
 //         <User />
 //       </div>
-      
+
 //     )
 //   }
 // }
