@@ -16,6 +16,17 @@ const Rooms = ({ location }) => {
         placeholder="What is on your mind?"
       />
       <button>Submit</button>
+      <div class="room-list">
+        <ul class="">
+          <li>
+            <Link to="/chat">Ruby</Link>
+          </li>
+
+          <li>
+            <Link to="/chat">Javascript</Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
