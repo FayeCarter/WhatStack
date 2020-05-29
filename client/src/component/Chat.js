@@ -11,13 +11,13 @@ const Chat = ({ location, username, room }) => {
 
   useEffect(() => {
     socket = io(ENDPOINT);
-    socket.emit("join", { name });
+    socket.emit("join", { name, room });
     console.log(name);
   }, [ENDPOINT]);
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
-    socket.emit("message", { name, message });
+    socket.emit("message", { name, message, room });
     setMessage("");
   };
 
