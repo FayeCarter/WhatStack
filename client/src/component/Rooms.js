@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import queryString from "query-string";
-import io from "socket.io-client";
+import React from "react";
 import { Link } from "react-router-dom";
-let socket;
-const Rooms = ({ location }) => {
+
+const Rooms = ({ setRoom }) => {
   return (
     <div>
       <h1>Whatstack</h1>
@@ -19,11 +17,25 @@ const Rooms = ({ location }) => {
       <div class="room-list">
         <ul class="">
           <li>
-            <Link to="/chat">Ruby</Link>
+            <Link
+              to="/chat"
+              onClick={() => {
+                setRoom("Ruby");
+              }}
+            >
+              Ruby
+            </Link>
           </li>
 
           <li>
-            <Link to="/chat">Javascript</Link>
+            <Link
+              to="/chat"
+              onClick={() => {
+                setRoom("Javascript");
+              }}
+            >
+              Javascript
+            </Link>
           </li>
         </ul>
       </div>
