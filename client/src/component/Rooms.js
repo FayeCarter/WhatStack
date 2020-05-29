@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Rooms = ({ setRoom }) => {
+  const [userRoom, setUserRoom] = useState("");
   return (
     <div>
       <h1>Whatstack</h1>
@@ -10,12 +11,22 @@ const Rooms = ({ setRoom }) => {
       </div>
       <input
         type="text"
+        onChange={(event) => {
+          setUserRoom(event.target.value);
+        }}
         className="chat-input"
         placeholder="What is on your mind?"
       />
-      <button>Submit</button>
-      <div class="room-list">
-        <ul class="">
+      <Link
+        to="/chat"
+        onClick={() => {
+          setRoom(userRoom);
+        }}
+      >
+        <button>Submit</button>
+      </Link>
+      <div className="room-list">
+        <ul className="">
           <li>
             <Link
               to="/chat"
