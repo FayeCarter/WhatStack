@@ -73,7 +73,7 @@ app.get("/login/callback", cors(), async (req, res) => {
 
 app.get('/user', cors(), (req, res) => {
   if(req.session.githubname) {
-    res.send(`Hi ${req.session.githubname}`)
+    res.json({username: req.session.githubname})
   } else {
     res.send('Not coming in')
   }
