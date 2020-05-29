@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from "react";
-import queryString from "query-string";
-import io from "socket.io-client";
-
+import React, { useState, useEffect } from 'react'
+import queryString from 'query-string'
+import io from 'socket.io-client'
+import { Link } from 'react-router-dom'
+let socket
 const Chat = ({ location }) => {
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
-  const ENDPOINT = "http://localhost:5000";
+  const [name, setName] = useState('')
+  const [message, setMessage] = useState('')
+  const [messages, setMessages] = useState([])
+  const ENDPOINT = 'http://localhost:5000'
 
   useEffect(() => {
-    const { name } = queryString.parse(location.search);
-    const socket = io(ENDPOINT);
-    setName(name);
-    socket.emit("join", { name });
-    console.log(name);
-  }, [ENDPOINT, location.search]);
+    const { name } = queryString.parse(location.search)
+    socket = io(ENDPOINT)
+    setName(name)
+    socket.emit('join', { name })
+    console.log(name)
+  }, [ENDPOINT, location.search])
 
   const handleSubmitMessage = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    socket.emit('message', { name, message })
 
-    setMessages([...messages, `${name}: ${message}`]);
+    setMessages([...messages, `${name}: ${message}`])
 
-    setMessage("");
-  };
+    setMessage('')
+  }
 
   return (
     <div>
@@ -32,10 +34,10 @@ const Chat = ({ location }) => {
         <div className="display-message-container">
           {messages.map((mes, index) => {
             return (
-              <div key={index} className="display-message">
+              <div className="display-message" key={index}>
                 {mes}
               </div>
-            );
+            )
           })}
         </div>
       </div>
@@ -48,7 +50,7 @@ const Chat = ({ location }) => {
       />
       <button onClick={handleSubmitMessage}>Submit</button>
     </div>
-  );
-};
+  )
+}
 
-export default Chat;
+export default Chat
