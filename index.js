@@ -13,10 +13,24 @@ const router = require('./router');
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(router);
 
+const roomList = ["C++", "Python"];
+
 io.on("connection", (socket) => {
   console.log("We have a new connnection!");
-  socket.on("join", ({ name }) => {
+  socket.on("join", ({ name, room }) => {
+    if (!roomList.includes(room)) {
+      roomList.push(room);
+    }
+
+    socket.join(room);
     console.log(name);
+  });
+  socket.on("requestRoomList", () => {
+    console.log("Room list requested");
+    socket.emit("roomList", { roomList });
+  });
+  socket.on("message", ({ name, message, room }) => {
+    io.sockets.in(room).emit("message", { name, message });
   });
   socket.on("disconnect", () => {
     console.log("User has left");

@@ -3,36 +3,34 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import { Link } from "react-router-dom";
 let socket;
-const Chat = ({ location }) => {
-  const [name, setName] = useState("");
+
+const Chat = ({ location, username, room }) => {
+  const [name, setName] = useState(username);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const ENDPOINT = "http://localhost:5000";
-  console.log(document);
-  const { id, username } = queryString.parse(location.search);
 
   useEffect(() => {
-    const { name } = queryString.parse(location.search);
     socket = io(ENDPOINT);
-    setName(name);
-    socket.emit("join", { name });
+    socket.emit("join", { name, room });
     console.log(name);
-  }, [ENDPOINT, location.search]);
+  }, [ENDPOINT]);
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
-    socket.emit("message", { name, message });
-
-    setMessages([...messages, `${name}: ${message}`]);
-
+    socket.emit("message", { name, message, room });
     setMessage("");
   };
 
+  useEffect(() => {
+    socket.on("message", ({ name, message }) => {
+      setMessages([...messages, `${name}: ${message}`]);
+    });
+  });
+
   return (
     <div>
-      <h1>Chat</h1>
-      {id}
-      {username}
+      <h1>{room} Chat</h1>
       <div className="message-box">
         <div>Welcome {name} to the room</div>
         <div className="display-message-container">

@@ -8,7 +8,7 @@ const Join = () => {
       <h1>Join</h1>
       <Link
         onClick={(event) => (!name ? event.preventDefault() : null)}
-        to={`/chat?name=${name}`}
+        to={`/rooms?name=${name}`}
       >
         <input
           placeholder="name"
