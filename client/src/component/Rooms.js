@@ -44,29 +44,6 @@ const Rooms = ({ setRoom }) => {
         <button>Submit</button>
       </Link>
       <div className="room-list">
-        <ul className="">
-          <li>
-            <Link
-              to="/chat"
-              onClick={() => {
-                setRoom("Ruby");
-              }}
-            >
-              Ruby
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/chat"
-              onClick={() => {
-                setRoom("Javascript");
-              }}
-            >
-              Javascript
-            </Link>
-          </li>
-        </ul>
         <div>
           {roomList.map((room, index) => {
             return (
