@@ -66,7 +66,7 @@ router.get("/login/callback", cors(), async (req, res) => {
     req.session.githubname = user.login;
     req.session.githubID = user.id;
     res.redirect(
-      `http://localhost:3000/chat?username=${user.login}&id=${user.id}`
+      `http://localhost:3000/rooms?username=${user.login}&id=${user.id}`
     );
   } else {
     res.send("Login did not succeed!");

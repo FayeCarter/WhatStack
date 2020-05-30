@@ -9,6 +9,8 @@ const Chat = ({ location, username, room }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const ENDPOINT = "http://localhost:5000";
+  console.log("in chat");
+  console.log(location);
 
   useEffect(() => {
     socket = io(ENDPOINT);
@@ -32,7 +34,7 @@ const Chat = ({ location, username, room }) => {
     <div>
       <h1>{room} Chat</h1>
       <div className="message-box">
-        <div>Welcome {name} to the room</div>
+        <div>Welcome {username} to the room</div>
         <div className="display-message-container">
           {messages.map((mes, index) => {
             return (
