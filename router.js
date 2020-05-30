@@ -21,7 +21,7 @@ router.get("/", cors(), (req, res) => {
 });
 
 router.get("/login", cors(), (req, res) => {
-  const redirect_uri = "http://localhost:5000/login/callback";
+  const redirect_uri = "http://localhost:3000";
   res.redirect(
     `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${redirect_uri}`
   );
