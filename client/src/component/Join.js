@@ -19,6 +19,13 @@ const Join = () => {
         ></input>
         <button type="submit">Join</button>
       </Link>
+      <button
+        onClick={() => {
+          window.location.href = "http://localhost:5000/login";
+        }}
+      >
+        Github login
+      </button>
     </div>
   );
 };
