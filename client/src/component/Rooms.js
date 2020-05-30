@@ -14,7 +14,7 @@ const Rooms = ({ setRoom, username, setUsername }) => {
     socket.emit("requestRoomList");
     const searchParams = new URLSearchParams(location.search);
     setUsername(searchParams.get("username"));
-  }, []);
+  }, [location.search, setUsername]);
 
   useEffect(() => {
     socket.on("roomList", ({ roomList }) => {

@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from "react";
-import queryString from "query-string";
 import io from "socket.io-client";
-import { Link } from "react-router-dom";
 let socket;
 
-const Chat = ({ location, username, room }) => {
-  const [name, setName] = useState(username);
+const Chat = ({ username, room }) => {
+  const [name] = useState(username);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const ENDPOINT = "http://localhost:5000";
-  console.log("in chat");
-  console.log(location);
 
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("join", { name, room });
-    console.log(name);
-  }, [ENDPOINT]);
+  }, [ENDPOINT, name, room]);
 
   const handleSubmitMessage = (e) => {
     e.preventDefault();
