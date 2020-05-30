@@ -15,11 +15,17 @@ app.get("/", cors(), (req, res) => {
 
 app.use(cors());
 
+const roomList = ["C++", "Python"];
+
 io.on("connection", (socket) => {
   console.log("We have a new connnection!");
   socket.on("join", ({ name, room }) => {
     socket.join(room);
     console.log(name);
+  });
+  socket.on("requestRoomList", () => {
+    console.log("Room list requested");
+    socket.emit("roomList", { roomList });
   });
   socket.on("message", ({ name, message, room }) => {
     io.sockets.in(room).emit("message", { name, message });
