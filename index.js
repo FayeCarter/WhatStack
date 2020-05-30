@@ -20,6 +20,10 @@ const roomList = ["C++", "Python"];
 io.on("connection", (socket) => {
   console.log("We have a new connnection!");
   socket.on("join", ({ name, room }) => {
+    if (!roomList.includes(room)) {
+      roomList.push(room);
+    }
+
     socket.join(room);
     console.log(name);
   });
