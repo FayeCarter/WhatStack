@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 let socket;
 
-const Rooms = ({ setRoom }) => {
+const Rooms = ({ setRoom, username, setUsername }) => {
   const [userRoom, setUserRoom] = useState("");
   const [roomList, setRoomList] = useState([]);
   const ENDPOINT = "http://localhost:5000";
+  let location = useLocation();
 
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("requestRoomList");
-  }, []);
+    const searchParams = new URLSearchParams(location.search);
+    setUsername(searchParams.get("username"));
+  }, [location.search, setUsername]);
 
   useEffect(() => {
     socket.on("roomList", ({ roomList }) => {
       setRoomList(roomList);
-      console.log("roomlist");
-      console.log(roomList);
     });
   });
 
@@ -25,7 +26,7 @@ const Rooms = ({ setRoom }) => {
     <div>
       <h1>Whatstack</h1>
       <div className="topic-box">
-        <div>Welcome to Whatstack</div>
+        <div>Welcome to Whatstack {username}</div>
       </div>
       <input
         type="text"

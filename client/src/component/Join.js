@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const Join = () => {
   const [name, setName] = useState("");
+
   return (
     <div>
       <h1>Join</h1>

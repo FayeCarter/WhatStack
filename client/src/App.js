@@ -1,11 +1,11 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Join from "./component/Join.js";
 import Chat from "./component/Chat.js";
 import Rooms from "./component/Rooms.js";
 
 const App = () => {
-  const [name, setName] = useState("Angelica");
+  const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
 
   return (
@@ -14,12 +14,21 @@ const App = () => {
       <Route
         path="/chat"
         exact
-        render={({ props }) => <Chat {...props} name={name} room={room} />}
+        render={({ props }) => (
+          <Chat {...props} username={username} room={room} />
+        )}
       />
       <Route
         path="/rooms"
         exact
-        render={({ props }) => <Rooms {...props} setRoom={setRoom} />}
+        render={({ props }) => (
+          <Rooms
+            {...props}
+            setRoom={setRoom}
+            setUsername={setUsername}
+            username={username}
+          />
+        )}
       />
     </Router>
   );
