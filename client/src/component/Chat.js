@@ -1,34 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import queryString from 'query-string'
-import io from 'socket.io-client'
-import { Link } from 'react-router-dom'
-let socket
+import React, { useState, useEffect } from "react";
+import queryString from "query-string";
+import io from "socket.io-client";
+import { Link } from "react-router-dom";
+let socket;
 const Chat = ({ location }) => {
-  const [name, setName] = useState('')
-  const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
-  const ENDPOINT = 'http://localhost:5000'
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const ENDPOINT = "http://localhost:5000";
+  console.log(document);
+  const { id, username } = queryString.parse(location.search);
 
   useEffect(() => {
-    const { name } = queryString.parse(location.search)
-    socket = io(ENDPOINT)
-    setName(name)
-    socket.emit('join', { name })
-    console.log(name)
-  }, [ENDPOINT, location.search])
+    const { name } = queryString.parse(location.search);
+    socket = io(ENDPOINT);
+    setName(name);
+    socket.emit("join", { name });
+    console.log(name);
+  }, [ENDPOINT, location.search]);
 
   const handleSubmitMessage = (e) => {
-    e.preventDefault()
-    socket.emit('message', { name, message })
+    e.preventDefault();
+    socket.emit("message", { name, message });
 
-    setMessages([...messages, `${name}: ${message}`])
+    setMessages([...messages, `${name}: ${message}`]);
 
-    setMessage('')
-  }
+    setMessage("");
+  };
 
   return (
     <div>
       <h1>Chat</h1>
+      {id}
+      {username}
       <div className="message-box">
         <div>Welcome {name} to the room</div>
         <div className="display-message-container">
@@ -37,7 +41,7 @@ const Chat = ({ location }) => {
               <div className="display-message" key={index}>
                 {mes}
               </div>
-            )
+            );
           })}
         </div>
       </div>
@@ -50,7 +54,7 @@ const Chat = ({ location }) => {
       />
       <button onClick={handleSubmitMessage}>Submit</button>
     </div>
-  )
-}
+  );
+};
 
-export default Chat
+export default Chat;
