@@ -3,6 +3,7 @@ import queryString from "query-string";
 import io from "socket.io-client";
 import { Link } from "react-router-dom";
 let socket;
+
 const Chat = ({ location, username, room }) => {
   const [name, setName] = useState(username);
   const [message, setMessage] = useState("");
