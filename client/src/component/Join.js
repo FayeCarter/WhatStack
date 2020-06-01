@@ -22,7 +22,7 @@ const Join = () => {
       </Link>
       <button
         onClick={() => {
-          window.location.href = "http://localhost:5000/login";
+          window.location.href = "http://whatstack.herokuapp.com/login";
         }}
       >
         Github login
