@@ -2,16 +2,22 @@ const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
 const cors = require("cors");
-require("dotenv").config()
+require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
-const router = require('./router');
+const router = require("./router");
+const path = require("path");
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(router);
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 const roomList = ["C++", "Python"];
 
