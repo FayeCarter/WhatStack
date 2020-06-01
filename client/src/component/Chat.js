@@ -22,7 +22,7 @@ const Chat = ({ username, room }) => {
 
   useEffect(() => {
     socket.on("message", ({ name, message }) => {
-      setMessages([...messages, `${name}: ${message}`]);
+      setMessages([...messages, [name, message]]);
     });
   });
 
@@ -35,7 +35,7 @@ const Chat = ({ username, room }) => {
           {messages.map((mes, index) => {
             return (
               <div className="display-message" key={index}>
-              <ReactMarkdown source={mes}/>
+              { mes[0] }:<ReactMarkdown source={mes[1]}/>
               </div>
             );
           })}
