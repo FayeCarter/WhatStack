@@ -1,42 +1,44 @@
-const express = require("express");
-const socketio = require("socket.io");
-const http = require("http");
-const cors = require("cors");
-require("dotenv").config()
+const express = require('express')
+const socketio = require('socket.io')
+const http = require('http')
+const cors = require('cors')
+require('dotenv').config()
 
-const PORT = process.env.PORT || 5000;
-const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
-const router = require('./router');
+const PORT = process.env.PORT || 5000
+const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
+const router = require('./router')
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-app.use(router);
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }))
+app.use(router)
 
-const roomList = ["C++", "Python"];
+const roomList = ['C++', 'Python']
 
-io.on("connection", (socket) => {
-  console.log("We have a new connnection!");
-  socket.on("join", ({ name, room }) => {
+io.on('connection', (socket) => {
+  console.log('We have a new connnection!')
+  socket.on('join', ({ name, room }) => {
     if (!roomList.includes(room)) {
-      roomList.push(room);
+      roomList.push(room)
     }
 
-    socket.join(room);
-    console.log(name);
-  });
-  socket.on("requestRoomList", () => {
-    console.log("Room list requested");
-    socket.emit("roomList", { roomList });
-  });
-  socket.on("message", ({ name, message, room }) => {
-    io.sockets.in(room).emit("message", { name, message });
-  });
-  socket.on("disconnect", () => {
-    console.log("User has left");
-  });
-});
+    socket.join(room)
+    console.log(name)
+  })
+  socket.on('requestRoomList', () => {
+    console.log('Room list requested')
+    socket.emit('roomList', { roomList })
+  })
+  socket.on('message', ({ name, message, room }) => {
+    io.sockets.in(room).emit('message', { name, message })
+  })
+  socket.on('disconnect', () => {
+    console.log('User has left')
+  })
+})
 
 server.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`);
-});
+  console.log(`Listening on ${PORT}`)
+})
+
+exports.server = io.listen(PORT)
