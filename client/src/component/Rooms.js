@@ -6,7 +6,7 @@ let socket;
 const Rooms = ({ setRoom, username, setUsername }) => {
   const [userRoom, setUserRoom] = useState("");
   const [roomList, setRoomList] = useState([]);
-  const ENDPOINT = "http://localhost:5000";
+  const ENDPOINT = "http://whatstack.herokuapp.com";
   let location = useLocation();
 
   useEffect(() => {
