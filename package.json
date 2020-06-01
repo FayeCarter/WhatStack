@@ -9,7 +9,8 @@
     "dev": "nodemon index.js",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "lint": "eslint ./cypress/integration/**/*.js ./client/src/**/*.js index.js"
+    "lint": "eslint ./cypress/integration/**/*.js ./client/src/**/*.js index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
