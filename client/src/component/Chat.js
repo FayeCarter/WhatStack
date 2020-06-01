@@ -35,21 +35,19 @@ const Chat = ({ username, room }) => {
           {messages.map((mes, index) => {
             return (
               <div className="display-message" key={index}>
-              { mes[0] }:<ReactMarkdown source={mes[1]}/>
+                {mes[0]}:<ReactMarkdown source={mes[1]} />
               </div>
             );
           })}
         </div>
       </div>
-      <input
-        type="text"
+      <textarea
         className="chat-input"
         placeholder="Enter message here"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
       <button onClick={handleSubmitMessage}>Submit</button>
-      <ReactMarkdown source={"## Hello"}/>
     </div>
   );
 };
