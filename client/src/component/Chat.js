@@ -6,7 +6,7 @@ const Chat = ({ username, room }) => {
   const [name] = useState(username);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const ENDPOINT = "http://localhost:5000";
+  const ENDPOINT = "http://whatstack.herokuapp.com";
 
   useEffect(() => {
     socket = io(ENDPOINT);
