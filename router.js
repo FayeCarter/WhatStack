@@ -16,9 +16,9 @@ router.use(
   })
 );
 
-router.get("/", cors(), (req, res) => {
-  res.send("Server is up and running");
-});
+// router.get("/", cors(), (req, res) => {
+//   res.send("Server is up and running");
+// });
 
 router.get("/login", cors(), (req, res) => {
   const redirect_uri = "http://localhost:5000/login/callback";
