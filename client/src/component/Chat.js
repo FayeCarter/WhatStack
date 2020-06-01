@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 import io from "socket.io-client";
 let socket;
 
@@ -34,7 +35,7 @@ const Chat = ({ username, room }) => {
           {messages.map((mes, index) => {
             return (
               <div className="display-message" key={index}>
-                {mes}
+              <ReactMarkdown source={mes}/>
               </div>
             );
           })}
@@ -48,6 +49,7 @@ const Chat = ({ username, room }) => {
         onChange={(e) => setMessage(e.target.value)}
       />
       <button onClick={handleSubmitMessage}>Submit</button>
+      <ReactMarkdown source={"## Hello"}/>
     </div>
   );
 };
