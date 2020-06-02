@@ -27,9 +27,12 @@ const Rooms = ({ setRoom, username, setUsername }) => {
     <div className="body">
       <div className="content">
         <div>
-          <h1>Whatstack</h1>
+          <h1>
+            <span className="thin">What</span>
+            <span className="thick">stack</span>
+          </h1>
           <div className="topic-box">
-            <div className="title">Welcome to Whatstack {username}</div>
+            <div className="heading">Welcome to Whatstack {username}</div>
           </div>
           <input
             type="text"

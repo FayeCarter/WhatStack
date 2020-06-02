@@ -1,7 +1,26 @@
-.title {
-  color: blue;
+@font-face {
+  font-family: heeboBold;
+  src: url(../assets/fonts/Heebo-Black.ttf);
 }
 
+@font-face {
+  font-family: heebo;
+  src: url(../assets/fonts/Heebo-Thin.ttf);
+}
+
+.thin {
+  font-family: heebo;
+  font-size: 50px;
+}
+
+.thick {
+  font-family: heeboBold;
+  font-size: 50px;
+}
+
+.heading {
+  font-family: heebo;
+}
 .body {
   display: flex;
   justify-content: center;
