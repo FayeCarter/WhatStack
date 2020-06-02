@@ -1,0 +1,13 @@
+.title {
+  color: blue;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  justify-content: center;
+  text-align: center;
+}
