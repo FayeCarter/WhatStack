@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
 import io from "socket.io-client";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 let socket;
 
 const Chat = ({ username, room }) => {
@@ -26,6 +27,22 @@ const Chat = ({ username, room }) => {
     });
   });
 
+  function formatMessage(msg) {
+    const startCode = msg.slice(0, 3) === "```";
+    const endCode = msg.slice(msg.length - 3) === "```";
+
+    if (startCode && endCode) {
+      const code = msg.slice(3, msg.length - 3);
+      return (
+        <SyntaxHighlighter language="javascript" style={docco}>
+          {code}
+        </SyntaxHighlighter>
+      );
+    } else {
+      return msg;
+    }
+  }
+
   return (
     <div>
       <h1>{room} Chat</h1>
@@ -35,7 +52,8 @@ const Chat = ({ username, room }) => {
           {messages.map((mes, index) => {
             return (
               <div className="display-message" key={index}>
-                {mes[0]}:<ReactMarkdown source={mes[1]} />
+                <div>{mes[0]}</div>
+                {formatMessage(mes[1])}
               </div>
             );
           })}
