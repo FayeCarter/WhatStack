@@ -2,13 +2,21 @@ const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
 const cors = require("cors");
-require("dotenv").config()
+require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+require("./database.js");
 const server = http.createServer(app);
 const io = socketio(server);
-const router = require('./router');
+//const mongoose = require("mongoose");
+const router = require("./router");
+const Message = require("./models/messages.js");
+
+// const mongoDB = "mongodb://127.0.0.1/my_database";
+// mongoose.connect(mongoDB, { useNewUrlParser: true });
+// const db = mongoose.connection;
+// db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(router);
@@ -30,6 +38,16 @@ io.on("connection", (socket) => {
     socket.emit("roomList", { roomList });
   });
   socket.on("message", ({ name, message, room }) => {
+    const messageInstance = new Message({
+      name: name,
+      message: message,
+    });
+    messageInstance.save(function (err) {
+      if (err) {
+        return console.error(err);
+      }
+    });
+    console.log("test");
     io.sockets.in(room).emit("message", { name, message });
   });
   socket.on("disconnect", () => {
