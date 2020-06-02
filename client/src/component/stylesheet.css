@@ -18,6 +18,10 @@
   font-size: 50px;
 }
 
+.userName {
+  font-family: heeboBold;
+}
+
 .heading {
   font-family: heebo;
 }
@@ -36,4 +40,7 @@
   padding: 20px;
   margin-top: 10px;
   background-color: rgb(204, 204, 204);
+}
+
+.sendMessage {
 }

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 const MessageInput = ({ handleSubmitMessage }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('')
 
   const handleButtonClick = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     handleSubmitMessage(message)
-    setMessage("")
+    setMessage('')
   }
 
   return (
@@ -17,9 +17,11 @@ const MessageInput = ({ handleSubmitMessage }) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button onClick={handleButtonClick}>Submit</button>
+      <div>
+        <button onClick={handleButtonClick}>Send</button>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default MessageInput;
+export default MessageInput
