@@ -3,12 +3,13 @@ import io from "socket.io-client";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import languageArray from "./languages";
+import MessageInput from "./MessageInput";
 
 let socket;
 
 const Chat = ({ username, room }) => {
   const [name] = useState(username);
-  const [message, setMessage] = useState("");
+  const [, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const ENDPOINT = "http://whatstack.herokuapp.com";
 
@@ -17,8 +18,7 @@ const Chat = ({ username, room }) => {
     socket.emit("join", { name, room });
   }, [ENDPOINT, name, room]);
 
-  const handleSubmitMessage = (e) => {
-    e.preventDefault();
+  const handleSubmitMessage = (message) => {
     socket.emit("message", { name, message, room });
     setMessage("");
   };
@@ -78,13 +78,7 @@ const Chat = ({ username, room }) => {
           })}
         </div>
       </div>
-      <textarea
-        className="chat-input"
-        placeholder="Enter message here"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={handleSubmitMessage}>Submit</button>
+      <MessageInput handleSubmitMessage={handleSubmitMessage} />
     </div>
   );
 };
