@@ -22,7 +22,7 @@ router.get("/", cors(), (req, res) => {
 });
 
 router.get("/login", cors(), (req, res) => {
-  const redirect_uri = "http://localhost:5000/login/callback";
+  const redirect_uri = `${process.env.BACKEND}/login/callback`;
   res.redirect(
     `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${redirect_uri}`
   );
@@ -67,7 +67,7 @@ router.get("/login/callback", cors(), async (req, res) => {
     req.session.githubname = user.login;
     req.session.githubID = user.id;
     res.redirect(
-      `http://localhost:3000/rooms?username=${user.login}&id=${user.id}`
+      `${process.env.FRONTEND}/rooms?username=${user.login}&id=${user.id}`
     );
   } else {
     res.send("Login did not succeed!");

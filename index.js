@@ -9,14 +9,8 @@ const app = express();
 require("./database.js");
 const server = http.createServer(app);
 const io = socketio(server);
-//const mongoose = require("mongoose");
 const router = require("./router");
 const Message = require("./models/messages.js");
-
-// const mongoDB = "mongodb://127.0.0.1/my_database";
-// mongoose.connect(mongoDB, { useNewUrlParser: true });
-// const db = mongoose.connection;
-// db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(router);
@@ -29,9 +23,13 @@ io.on("connection", (socket) => {
     if (!roomList.includes(room)) {
       roomList.push(room);
     }
-
     socket.join(room);
     console.log(name);
+
+    const q = Message.find({ room });
+
+    q.then((res) => io.sockets.in(room).emit("messages", res));
+    //console.log(test.messages);
   });
   socket.on("requestRoomList", () => {
     console.log("Room list requested");
@@ -41,6 +39,7 @@ io.on("connection", (socket) => {
     const messageInstance = new Message({
       name: name,
       message: message,
+      room: room,
     });
     messageInstance.save(function (err) {
       if (err) {
