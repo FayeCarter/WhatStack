@@ -26,7 +26,10 @@ const Chat = ({ username, room }) => {
 
   useEffect(() => {
     socket.on("message", ({ name, message }) => {
-      setMessages([...messages, [name, message]]);
+      setMessages([...messages, { name, message }]);
+    });
+    socket.on("messages", (messageArray) => {
+      setMessages(messageArray);
     });
   });
 
@@ -73,8 +76,8 @@ const Chat = ({ username, room }) => {
           {messages.map((mes, index) => {
             return (
               <div className="display-message" key={index}>
-                <div>{mes[0]}</div>
-                {formatMessage(mes[1])}
+                <div>{mes.name}</div>
+                {formatMessage(mes.message)}
               </div>
             );
           })}
