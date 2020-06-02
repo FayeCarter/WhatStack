@@ -70,7 +70,11 @@ const Chat = ({ username, room }) => {
   return (
     <div className="body">
       <div className="content">
-        <h1 className="thick">{room} Chat</h1>
+        <h1>
+          <span className="thin">What</span>
+          <span className="thick">stack</span>
+        </h1>
+        <h2 className="heading">{room} Chat</h2>
         <div className="message-box">
           <div>Welcome {username} to the room</div>
           <div className="display-message-container">
