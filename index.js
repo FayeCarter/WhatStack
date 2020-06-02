@@ -11,9 +11,15 @@ const server = http.createServer(app);
 const io = socketio(server);
 const router = require("./router");
 const Message = require("./models/messages.js");
+const path = require("path");
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(router);
+app.use(express.static(path.join(__dirname, "client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+});
 
 const roomList = ["C++", "Python"];
 
