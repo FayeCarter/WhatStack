@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import languageArray from "./languages"
+
 let socket;
 
 const Chat = ({ username, room }) => {
@@ -32,9 +34,22 @@ const Chat = ({ username, room }) => {
     const endCode = msg.slice(msg.length - 3) === "```";
 
     if (startCode && endCode) {
-      const code = msg.slice(3, msg.length - 3);
+      let code = msg.slice(3, msg.length - 3);
+      let language = "";
+      console.log('in the loop')
+      console.log(msg.match(/^(```([\w-]+)).*(```)$/));
+      if (msg.match(/^(```([\w-]+)).*(```)$/)) {
+        console.log("in the conditional")
+        language = msg.match(/^(```([\w-]+)).*(```)$/)[2]
+      }
+      const languageBoolean = languageArray.includes(language)
+      if (!languageBoolean) {
+        language = "javascript"
+      } else {
+        code = code.slice(language.length)
+      }
       return (
-        <SyntaxHighlighter language="javascript" style={docco}>
+        <SyntaxHighlighter language={language} style={docco}>
           {code}
         </SyntaxHighlighter>
       );
