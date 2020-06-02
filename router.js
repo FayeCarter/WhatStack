@@ -1,10 +1,9 @@
 const express = require('express')
-
-const router = express.Router()
-const fetch = require('node-fetch')
-const cookieSession = require('cookie-session')
-const cors = require('cors')
-require('dotenv').config()
+const router = express.Router();
+const fetch = require("node-fetch");
+const cookieSession = require("cookie-session");
+const cors = require("cors");
+require("dotenv").config();
 
 const client_id = process.env.GITHUB_CLIENT_ID
 const client_secret = process.env.GITHUB_CLIENT_SECRET
@@ -17,7 +16,7 @@ router.use(
 )
 
 router.get("/login", cors(), (req, res) => {
-  const redirect_uri = "http://whatstack.herokuapp.com/login/callback";
+  const redirect_uri = `${process.env.BACKEND}/login/callback`;
   res.redirect(
     `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${redirect_uri}`,
   )
@@ -62,7 +61,7 @@ router.get('/login/callback', cors(), async (req, res) => {
     req.session.githubname = user.login
     req.session.githubID = user.id
     res.redirect(
-      `http://whatstack.herokuapp.com/rooms?username=${user.login}&id=${user.id}`
+      `${process.env.FRONTEND}/rooms?username=${user.login}&id=${user.id}`
     );
   } else {
     res.send('Login did not succeed!')
