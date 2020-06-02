@@ -7,18 +7,19 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const app = express();
 require("./database.js");
+
 const server = http.createServer(app);
 const io = socketio(server);
+const path = require("path");
 const router = require("./router");
 const Message = require("./models/messages.js");
-const path = require("path");
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(router);
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  res.sendFile(path.join(`${__dirname}/client/build/index.html`));
 });
 
 const roomList = ["C++", "Python"];
@@ -42,9 +43,9 @@ io.on("connection", (socket) => {
   });
   socket.on("message", ({ name, message, room }) => {
     const messageInstance = new Message({
-      name: name,
-      message: message,
-      room: room,
+      name,
+      message,
+      room,
     });
     messageInstance.save(function (err) {
       if (err) {
@@ -60,5 +61,7 @@ io.on("connection", (socket) => {
 });
 
 server.listen(PORT, () => {
+  console.log(`backend ${process.env.GITHUB_CLIENT_ID}`);
+  console.log(`backend ${process.env.BACKEND}`);
   console.log(`Listening on ${PORT}`);
 });
