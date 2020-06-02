@@ -40,7 +40,7 @@ const Rooms = ({ setRoom, username, setUsername }) => {
               setUserRoom(event.target.value)
             }}
             className="chat-input"
-            placeholder="What is on your mind?"
+            placeholder="Create a new room"
           />
           <Link
             to="/chat"
@@ -54,7 +54,7 @@ const Rooms = ({ setRoom, username, setUsername }) => {
             <div>
               {roomList.map((room, index) => {
                 return (
-                  <div key={index}>
+                  <div className="roomBox" key={index}>
                     <Link
                       to="/chat"
                       onClick={() => {
