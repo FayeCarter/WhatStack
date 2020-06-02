@@ -1,4 +1,6 @@
 import React from 'react'
+import logo from '../assets/images/github_logo.png'
+import './stylesheet.css'
 //require("dotenv").config();
 
 const Join = () => {
@@ -10,7 +12,10 @@ const Join = () => {
           <span className="thin">What</span>
           <span className="thick">stack</span>
         </h1>
-        <h2>Login with Github to join now!</h2>
+        <h2 className="heading">Login with Github to join now!</h2>
+        <div>
+          <img src={logo} alt="GitHub Logo" className="gitLogo" />
+        </div>
 
         <button
           onClick={() => {
