@@ -26,10 +26,9 @@ io.on("connection", (socket) => {
     socket.join(room);
     console.log(name);
 
-    const q = Message.find({ room });
+    const query = Message.find({ room });
 
-    q.then((res) => io.sockets.in(room).emit("messages", res));
-    //console.log(test.messages);
+    query.then((res) => io.sockets.in(room).emit("messages", res));
   });
   socket.on("requestRoomList", () => {
     console.log("Room list requested");

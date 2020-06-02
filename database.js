@@ -1,8 +1,5 @@
-//mongo "mongodb+srv://whatsstack-dpcwj.mongodb.net/test" --username WhatStack;
-
 const mongoose = require("mongoose");
-const connection =
-  "mongodb+srv://WhatStack:faye15cool@whatsstack-dpcwj.mongodb.net/test";
+const connection = process.env.MONGOCREDS;
 mongoose
   .connect(connection, {
     useNewUrlParser: true,
