@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import io from "socket.io-client";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import languageArray from "./languages"
+import languageArray from "./languages";
 
 let socket;
 
@@ -29,25 +29,29 @@ const Chat = ({ username, room }) => {
     });
   });
 
-  function formatMessage(msg) {
+  function isCode(msg) {
     const startCode = msg.slice(0, 3) === "```";
     const endCode = msg.slice(msg.length - 3) === "```";
+    return startCode && endCode;
+  }
 
-    if (startCode && endCode) {
-      let code = msg.slice(3, msg.length - 3);
+  function formatMessage(msg) {
+    if (isCode(msg)) {
       let language = "";
-      console.log('in the loop')
-      console.log(msg.match(/^(```([\w-]+)).*(```)$/));
-      if (msg.match(/^(```([\w-]+)).*(```)$/)) {
-        console.log("in the conditional")
-        language = msg.match(/^(```([\w-]+)).*(```)$/)[2]
+      let code = msg.slice(3, msg.length - 3);
+
+      if (msg.match(/^(```([\w-]+))[\s\S]*(```)$/)) {
+        language = msg.match(/^(```([\w-]+))[\s\S]*(```)$/)[2];
       }
-      const languageBoolean = languageArray.includes(language)
-      if (!languageBoolean) {
-        language = "javascript"
+
+      const isValidLanguage = languageArray.includes(language);
+
+      if (isValidLanguage) {
+        code = code.slice(language.length);
       } else {
-        code = code.slice(language.length)
+        language = "javascript";
       }
+
       return (
         <SyntaxHighlighter language={language} style={docco}>
           {code}
