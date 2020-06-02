@@ -10,6 +10,10 @@ const MessageSchema = new Schema({
     type: String,
     required: true,
   },
+  room: {
+    type: String,
+    required: true,
+  },
 });
 const Message = mongoose.model("Message", MessageSchema);
 module.exports = Message;
