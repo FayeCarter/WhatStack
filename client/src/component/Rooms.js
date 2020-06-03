@@ -71,7 +71,7 @@ const Rooms = ({ setRoom, username, setUsername }) => {
         </div>
       </div>
       <div className="robot">
-        <img src={robot} alt="Robot" />
+        <img className="robot" src={robot} alt="Robot" />
       </div>
     </div>
   )

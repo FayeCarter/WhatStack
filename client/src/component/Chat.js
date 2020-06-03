@@ -6,6 +6,7 @@ import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import languageArray from './languages'
 import MessageInput from './MessageInput'
 import robot from '../images/Robot.png'
+import Avatar from 'react-avatar'
 
 let socket
 
@@ -78,8 +79,13 @@ const Chat = ({ username, room }) => {
               {messages.map((mes, index) => {
                 return (
                   <div className="display-message" key={index}>
-                    <div className="lineBreak">{mes.name}</div>
-                    {formatMessage(mes.message)}
+                    <div className="avatar">
+                      <Avatar githubHandle={mes.name} size={40} round={true} />
+                    </div>
+                    <div>
+                      <div>{mes.name}</div>
+                      <div>{formatMessage(mes.message)}</div>
+                    </div>
                   </div>
                 )
               })}
@@ -95,7 +101,7 @@ const Chat = ({ username, room }) => {
         </div>
       </div>
       <div className="robot">
-        <img src={robot} alt="Robot" />
+        <img className="robot" src={robot} alt="Robot" />
       </div>
     </div>
   )
