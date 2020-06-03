@@ -1,0 +1,61 @@
+.roomContainer {
+  margin-left: 95px;
+}
+
+.roomButton {
+  width: 126px;
+  height: 52px;
+  border-radius: 2px;
+  background-color: #7114ea;
+  border: none;
+  padding: 0px;
+  font-size: 16px;
+}
+.roomButton:hover {
+  background-color: #5714ad;
+}
+
+.chat-input {
+  width: 602px;
+  height: 52px;
+  border-radius: 2px;
+  background-color: #43464e;
+  border: none;
+  font-size: 16px;
+  color: white;
+  padding: 0 20px;
+}
+
+Link {
+  padding: 0;
+  margin: 0;
+}
+
+.roomInput {
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  margin-bottom: 32px;
+}
+
+.rectangle {
+  width: 744px;
+  height: 40px;
+  padding-left: 24px;
+  padding-top: 14px;
+  padding-bottom: 0px;
+  border: none;
+  margin-bottom: 5px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
+  border: black 1px;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.rectangle:hover {
+  background-color: #43464e;
+}
