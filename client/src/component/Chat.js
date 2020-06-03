@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import io from 'socket.io-client'
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import languageArray from './languages'
 import MessageInput from './MessageInput'
 
@@ -57,7 +57,7 @@ const Chat = ({ username, room }) => {
       }
 
       return (
-        <SyntaxHighlighter language={language} style={docco}>
+        <SyntaxHighlighter language={language} style={xonokai}>
           {code}
         </SyntaxHighlighter>
       )
