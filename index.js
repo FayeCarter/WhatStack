@@ -15,7 +15,7 @@ const router = require("./router");
 const Message = require("./models/messages.js");
 const RoomList = require("./models/roomlist.js");
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: process.env.FRONTEND }));
 app.use(router);
 app.use(express.static(path.join(__dirname, "client/build")));
 
