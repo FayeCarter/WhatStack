@@ -1,21 +1,27 @@
-* {
+body {
   background-color: #363940;
   font-family: Avenir;
   color: white;
 }
-
+* {
+  color: white;
+}
+*:focus {
+}
 .joinButton {
   width: 468px;
   height: 52px;
   border-radius: 2px;
   background-color: #7114ea;
   border: none;
+  font-size: 16px;
 }
 .joinButton:hover {
   background-color: #5714ad;
 }
 
 .joinContainer {
+  margin-top: 80px;
   width: 536px;
   height: 384px;
   border-radius: 4px;
@@ -34,5 +40,15 @@
 h1 {
   margin-left: 95px;
   margin-top: 44px;
-  padding-bottom: 10%;
+  padding-bottom: 54px;
+}
+
+h2 {
+  font-family: Avenir;
+  font-size: 26px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.51px;
 }
