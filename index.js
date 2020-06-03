@@ -13,7 +13,7 @@ const io = socketio(server);
 const path = require("path");
 const router = require("./router");
 const Message = require("./models/messages.js");
-const RoomList = require("./models/roomlist.js");
+const RoomList = require("./models/roomList.js");
 
 app.use(cors({ credentials: true, origin: process.env.FRONTEND }));
 app.use(router);
