@@ -13,6 +13,7 @@ const io = socketio(server);
 const path = require("path");
 const router = require("./router");
 const Message = require("./models/messages.js");
+const RoomList = require("./models/roomlist.js");
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(router);
@@ -22,24 +23,45 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(`${__dirname}/client/build/index.html`));
 });
 
-const roomList = ["C++", "Python"];
-
 io.on("connection", (socket) => {
-  console.log("We have a new connnection!");
+  console.log("We have a new connection!");
   socket.on("join", ({ name, room }) => {
-    if (!roomList.includes(room)) {
-      roomList.push(room);
-    }
+    const roomListInstance = new RoomList({
+      room,
+    });
+
+    const roomQuery = RoomList.find({ room });
+
+    roomQuery.then((res) => {
+      const roomArray = res.map((item) => item.room)
+
+      if (!roomArray.includes( room )) {
+        roomListInstance.save(function (err) {
+          if (err) {
+            return console.error(err);
+          }
+        });
+      }
+    });
+
     socket.join(room);
-    console.log(name);
 
     const query = Message.find({ room });
 
     query.then((res) => io.sockets.in(room).emit("messages", res));
   });
+
   socket.on("requestRoomList", () => {
     console.log("Room list requested");
-    socket.emit("roomList", { roomList });
+
+    const getRoomQuery = RoomList.find();
+
+    getRoomQuery.then((res) => {
+      if (res) {
+        roomList = res.map((item) => item.room);
+      }
+      socket.emit("roomList", { roomList });
+    });
   });
   socket.on("message", ({ name, message, room }) => {
     const messageInstance = new Message({
@@ -52,7 +74,6 @@ io.on("connection", (socket) => {
         return console.error(err);
       }
     });
-    console.log("test");
     io.sockets.in(room).emit("message", { name, message });
   });
   socket.on("disconnect", () => {
@@ -61,7 +82,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`backend ${process.env.GITHUB_CLIENT_ID}`);
-  console.log(`backend ${process.env.BACKEND}`);
   console.log(`Listening on ${PORT}`);
 });
