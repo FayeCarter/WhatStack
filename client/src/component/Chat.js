@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import io from "socket.io-client";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
@@ -12,7 +12,7 @@ const Chat = ({ username, room }) => {
   const [name] = useState(username);
   const [, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const ENDPOINT = "http://whatstack.herokuapp.com";
+  const ENDPOINT = process.env.REACT_APP_BACKEND;
 
   useEffect(() => {
     socket = io(ENDPOINT);
@@ -68,7 +68,6 @@ const Chat = ({ username, room }) => {
 
   return (
     <div>
-
       <h1>{room} Chat</h1>
       <div className="message-box">
         <div>Welcome {username} to the room</div>
@@ -85,7 +84,9 @@ const Chat = ({ username, room }) => {
       </div>
 
       <MessageInput handleSubmitMessage={handleSubmitMessage} />
-      <Link to='/rooms' ><button>Back</button></Link>
+      <Link to="/rooms">
+        <button>Back</button>
+      </Link>
     </div>
   );
 };
