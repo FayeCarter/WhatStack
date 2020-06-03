@@ -1,0 +1,24 @@
+* {
+  font-family: Avenir;
+  background-color: #363940;
+  color: white;
+  
+}
+
+body {
+  height: 809px;
+}
+
+.test {
+  align-self: centre;
+  vertical-align: middle;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.51px;
+}

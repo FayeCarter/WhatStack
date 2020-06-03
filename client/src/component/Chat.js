@@ -5,6 +5,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import languageArray from "./languages";
 import MessageInput from "./MessageInput";
+import Avatar from 'react-avatar';
 
 let socket;
 
@@ -76,6 +77,7 @@ const Chat = ({ username, room }) => {
             return (
               <div className="display-message" key={index}>
                 <div>{mes.name}</div>
+                <Avatar githubHandle={mes.name} size={40} round={true} />
                 {formatMessage(mes.message)}
               </div>
             );
