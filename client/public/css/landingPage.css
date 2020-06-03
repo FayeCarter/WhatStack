@@ -1,0 +1,38 @@
+* {
+  background-color: #363940;
+  font-family: Avenir;
+  color: white;
+}
+
+.joinButton {
+  width: 468px;
+  height: 52px;
+  border-radius: 2px;
+  background-color: #7114ea;
+  border: none;
+}
+.joinButton:hover {
+  background-color: #5714ad;
+}
+
+.joinContainer {
+  width: 536px;
+  height: 384px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.joinOuter {
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  margin-left: 95px;
+  margin-top: 44px;
+  padding-bottom: 10%;
+}
