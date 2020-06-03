@@ -13,7 +13,7 @@ const Rooms = ({ setRoom, username, setUsername }) => {
     socket = io(ENDPOINT);
     socket.emit("requestRoomList");
     setUsername(cookie.load("githubname"));
-  }, [setUsername]);
+  }, []);
 
   useEffect(() => {
     socket.on("roomList", ({ roomList }) => {
