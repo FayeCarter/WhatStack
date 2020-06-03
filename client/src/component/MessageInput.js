@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 const MessageInput = ({ handleSubmitMessage }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('')
 
   const handleButtonClick = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     handleSubmitMessage(message)
-    setMessage("")
+    setMessage('')
   }
 
   return (
-    <div>
+    <div className="roomInput">
       <textarea
         className="chat-input"
         placeholder="Enter message here"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button onClick={handleButtonClick}>Submit</button>
+      <button className="chatButton" onClick={handleButtonClick}>
+        Post
+      </button>
     </div>
-  );
-};
+  )
+}
 
-export default MessageInput;
+export default MessageInput
