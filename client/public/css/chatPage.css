@@ -37,3 +37,8 @@
 .backPadding {
   margin-top: 16px;
 }
+
+.robot {
+  padding: 16px;
+  float: right;
+}

@@ -5,6 +5,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter'
 import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import languageArray from './languages'
 import MessageInput from './MessageInput'
+import robot from '../images/Robot.png'
 
 let socket
 
@@ -68,28 +69,33 @@ const Chat = ({ username, room }) => {
 
   return (
     <div className="roomContainer">
-      <h2># {room} </h2>
-      <div className="chatBox">
-        <div className="message-box">
-          <div className="welcome">Welcome {username} to the room</div>
-          <div className="display-message-container">
-            {messages.map((mes, index) => {
-              return (
-                <div className="display-message" key={index}>
-                  <div className="lineBreak">{mes.name}</div>
-                  {formatMessage(mes.message)}
-                </div>
-              )
-            })}
+      <div className="boxFloat">
+        <h2># {room} </h2>
+        <div className="chatBox">
+          <div className="message-box">
+            <div className="welcome">Welcome {username} to the room</div>
+            <div className="display-message-container">
+              {messages.map((mes, index) => {
+                return (
+                  <div className="display-message" key={index}>
+                    <div className="lineBreak">{mes.name}</div>
+                    {formatMessage(mes.message)}
+                  </div>
+                )
+              })}
+            </div>
           </div>
-        </div>
 
-        <MessageInput handleSubmitMessage={handleSubmitMessage} />
+          <MessageInput handleSubmitMessage={handleSubmitMessage} />
+        </div>
+        <div className="backPadding">
+          <Link to="/rooms">
+            <button className="chatButton">Back</button>
+          </Link>
+        </div>
       </div>
-      <div className="backPadding">
-        <Link to="/rooms">
-          <button className="chatButton">Back</button>
-        </Link>
+      <div className="robot">
+        <img src={robot} alt="Robot" />
       </div>
     </div>
   )

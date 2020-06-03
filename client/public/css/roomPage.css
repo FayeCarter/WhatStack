@@ -1,6 +1,9 @@
 .roomContainer {
   margin-left: 95px;
 }
+.boxFloat {
+  float: left;
+}
 .roomButton {
   width: 126px;
   height: 52px;
