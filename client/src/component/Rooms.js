@@ -2,25 +2,22 @@ import React, { useState, useEffect } from 'react'
 import io from 'socket.io-client'
 import { Link } from 'react-router-dom'
 import cookie from 'react-cookies'
+import arrow from '../images/arrow.svg'
 let socket
-
 const Rooms = ({ setRoom, username, setUsername }) => {
   const [userRoom, setUserRoom] = useState('')
   const [roomList, setRoomList] = useState([])
   const ENDPOINT = process.env.ENDPOINT
-
   useEffect(() => {
     socket = io(ENDPOINT)
     socket.emit('requestRoomList')
     setUsername(cookie.load('githubname'))
   }, [])
-
   useEffect(() => {
     socket.on('roomList', ({ roomList }) => {
       setRoomList(roomList)
     })
   })
-
   return (
     <div className="roomContainer">
       <div className="topic-box">
@@ -46,17 +43,23 @@ const Rooms = ({ setRoom, username, setUsername }) => {
         </Link>
       </div>
       <div className="room-list">
+        <div className="chat-header">Chats</div>
         <div>
           {roomList.map((room, index) => {
             return (
-              <div className="rectangle" key={index}>
+              <div className="link-holder" key={index}>
                 <Link
                   to="/chat"
                   onClick={() => {
                     setRoom(room)
                   }}
                 >
-                  {room}
+                  <div className="rectangle">
+                    <div className="room-name"># {room}</div>
+                    <div className="arrow">
+                      <img src={arrow} alt="Arrow" />
+                    </div>
+                  </div>
                 </Link>
               </div>
             )
@@ -66,5 +69,4 @@ const Rooms = ({ setRoom, username, setUsername }) => {
     </div>
   )
 }
-
 export default Rooms

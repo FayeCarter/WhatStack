@@ -1,7 +1,6 @@
 .roomContainer {
   margin-left: 95px;
 }
-
 .roomButton {
   width: 126px;
   height: 52px;
@@ -14,7 +13,6 @@
 .roomButton:hover {
   background-color: #5714ad;
 }
-
 .chat-input {
   width: 602px;
   height: 52px;
@@ -26,37 +24,41 @@
   padding: 0 20px;
   line-height: 48px;
 }
-
-Link {
-  padding: 0;
-  margin: 0;
-}
-
 .roomInput {
   padding: 0px;
   margin: 0px;
   display: flex;
   margin-bottom: 32px;
 }
-
-.rectangle {
+.rectangle,
+.chat-header {
   width: 744px;
   height: 40px;
   padding-left: 24px;
   padding-top: 14px;
   padding-bottom: 0px;
-  border: none;
-  margin-bottom: 5px;
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2);
-  border: black 1px;
+  border: #787c87 1px solid;
   background-color: transparent;
   text-decoration: none;
+  font-size: 24px;
 }
-
+.rectangle {
+  border-top: 0;
+}
 a {
   text-decoration: none;
 }
-
 .rectangle:hover {
   background-color: #43464e;
+}
+.room-name {
+  float: left;
+  display: inline;
+}
+.arrow {
+  width: 50px;
+  float: right;
+}
+.link-holder {
+  width: 744px;
 }
