@@ -3,7 +3,7 @@ const io = require("socket.io-client");
 const PORT = "http://localhost:5000";
 let socket;
 
-describe("Test to see if the rooms are returned", () => {
+describe("Server", () => {
   beforeEach((done) => {
     // Do not hardcode server port and address, square brackets are used for IPv6
     (socket = io.connect(PORT)),
@@ -19,17 +19,15 @@ describe("Test to see if the rooms are returned", () => {
   });
 
   afterEach((done) => {
-    // Cleanup
     if (socket.connected) {
       socket.disconnect();
     }
     done();
   });
 
-  test.only("should receive array of rooms back", async () => {
+  test("should send a list of rooms when requested", async () => {
     socket.emit("requestRoomList");
     socket.on("roomList", ({ roomlist }) => {
-      // Check that the message matches
       expect(roomlist).toBe(["C++", "Python"]);
     });
   });
