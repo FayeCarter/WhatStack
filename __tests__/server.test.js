@@ -26,8 +26,10 @@ describe("Server", () => {
   });
 
   test("should send a list of rooms when requested", async () => {
+    console.log("here");
     socket.emit("requestRoomList");
     socket.on("roomList", ({ roomlist }) => {
+      console.log("received room list");
       expect(roomlist).toBe(["C++", "Python"]);
     });
   });
