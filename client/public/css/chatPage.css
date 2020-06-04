@@ -28,6 +28,7 @@
 
 .lineBreak {
   margin-top: 16px;
+  float: right;
 }
 
 .roomInput {
@@ -39,6 +40,15 @@
 }
 
 .robot {
-  padding: 16px;
-  float: right;
+  margin: 32px;
+  padding: 32px;
+}
+
+.avatar {
+  padding-right: 8px;
+  float: left;
+}
+
+.display-message {
+  margin-bottom: 16px;
 }
