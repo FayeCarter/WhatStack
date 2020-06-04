@@ -1,17 +1,10 @@
 const io = require("socket.io-client");
-const http = require("http");
-const ioBack = require("socket.io");
 
 const PORT = "http://localhost:5000";
-
 let socket;
-let httpServer;
-let httpServerAddr;
-let ioServer;
 
 describe("Test to see if the rooms are returned", () => {
   beforeEach((done) => {
-    // Setup
     // Do not hardcode server port and address, square brackets are used for IPv6
     (socket = io.connect(PORT)),
       {
@@ -33,7 +26,7 @@ describe("Test to see if the rooms are returned", () => {
     done();
   });
 
-  test.only("should recieve array of rooms back", async () => {
+  test.only("should receive array of rooms back", async () => {
     socket.emit("requestRoomList");
     socket.on("roomList", ({ roomlist }) => {
       // Check that the message matches
