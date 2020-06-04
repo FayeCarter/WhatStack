@@ -1,0 +1,54 @@
+.chatButton {
+  width: 126px;
+  height: 52px;
+  border-radius: 2px;
+  background-color: #7114ea;
+  border: none;
+  padding: 0px;
+  font-size: 16px;
+  margin-right: 22px;
+}
+.chatButton:hover {
+  background-color: #5714ad;
+}
+
+.chatBox {
+  background-color: #28292c;
+  z-index: 1;
+  padding-left: 20px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  max-width: 780px;
+}
+
+.welcome {
+  padding-top: 16px;
+  margin-bottom: 16px;
+}
+
+.lineBreak {
+  margin-top: 16px;
+  float: right;
+}
+
+.roomInput {
+  margin-top: 16px;
+}
+
+.backPadding {
+  margin-top: 16px;
+}
+
+.robot {
+  margin: 32px;
+  padding: 32px;
+}
+
+.avatar {
+  padding-right: 8px;
+  float: left;
+}
+
+.display-message {
+  margin-bottom: 16px;
+}
