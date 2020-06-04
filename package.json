@@ -4,12 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "lint": "eslint ./cypress/integration/**/*.js ./client/src/**/*.js index.js",
+    "lint": "eslint ./client/src/**/*.js index.js router.js ./models/**/*.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
@@ -34,7 +32,6 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "cypress": "^4.7.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -47,5 +44,12 @@
     "eslint-plugin-react-hooks": "^2.5.1",
     "jest": "^26.0.1",
     "prettier": "^2.0.5"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/client"
+    ],
+    "collectCoverage": true
   }
 }
