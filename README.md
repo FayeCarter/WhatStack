@@ -16,7 +16,9 @@ In this project we were given two weeks as a team of 5 to build a product to sol
 
 # Specifications
 
-During our time at makers we have been blocked. A lot. Asking for help can be tough, it's difficult to acknowledge your own ignorance and sometimes places can be less than welcoming to newcomers asking a question that's been covered before - think back to all the times you've seen someone on stackoverflow saying "that's a stupid question" or "This is a duplicate of \<some other question which while similar isn't actually your question>" we decided that
+During our time at makers we have been blocked. A lot. Asking for help can be tough, it's difficult to acknowledge your own ignorance and sometimes places can be less than welcoming to newcomers asking a question that's been covered before. Think back to all the times you've seen someone on Stack Overflow saying "that's a stupid question" or "This is a duplicate of \<some other question which while similar isn't actually your question>"
+
+We decided that
 
 - it shouldn't be so hard to ask for help
 - you can reach a solution quicker through a 5 minute conversation than posting a question on a message board and hoping someone gets back to you with something more positive than "that's a stupid question"
@@ -24,7 +26,7 @@ During our time at makers we have been blocked. A lot. Asking for help can be to
 
 # User Stories
 
-To view the user stories that this project has completed features for, [please visit our wiki page!](https://github.com/FayeCarter/WhatStack/wiki/User-Stories)
+To view the user stories that this project has completed features for [please visit our wiki page!](https://github.com/FayeCarter/WhatStack/wiki/User-Stories)
 
 # Using WhatStack
 
@@ -34,9 +36,19 @@ Want to check the application out? [Click here!](https://whatstack.herokuapp.com
 
 Whatstack is designed to be easy to access for developers, so instead of having to create an account and register, you can simply login with your Github account.
 
+When you start go to the main web address you see the following screen.
+
+![WhatStack login screen](./whatstack-login.png)
+
+Clicking 'Join with GitHub' takes you to Github, where you are asked to verify you are happy to log in using your Github account.
+
+![Github login screen](./github-login.png)
+
 ## opening a chat room
 
-once you're logged in you'll be taken to the /rooms screen, which is where you can either make a new room to help you with your problem, or if you see another room already there that covers it you can join that conversation instead.
+Once you're logged in you'll be taken to the /rooms screen, which is where you can either make a new room to help you with your problem, or if you see another room already there that covers it you can join that conversation instead.
+
+![Chat rooms screen](./rooms-screen.png)
 
 ## sending (_plaintext_) messages
 
@@ -45,6 +57,8 @@ Once you're in a room you can contribute to the conversation by typing your mess
 ## sending (_codeblock_) messages
 
 Want to send a block of code? No problem, simply add three backtics (\`\`\`) to the beginning and end of your code block, you can even specify a language for the code to be formatted in by writing the language immediately after the backticks e.g. \`\`\`ruby \<some code> \`\`\` and the result will be a code block correctly highlighted in the ruby style. The language is set to javascript by default.
+
+![Individual room screen with examples of plain and code messages](./plain-and-code-messages.png)
 
 # Set up
 
@@ -98,25 +112,23 @@ This should automatically open the application webpage if you've set up everythi
 
 ## Frontend
 
-The Frontend for this project uses react to generate a Single Page Application served on the "/" route. To read more about the composition and design of the Frontend [please visit our wiki page!](link-to-wiki-page-here)
+The frontend for this project uses React to generate a Single Page Application served on the "/" route.
 
 ## Backend
 
-The Backend for this project uses NodeJS and express to serve the "/" route and various backend routes. To read more about how our Backend is set up, [please visit our wiki page!](link-to-wiki-page-here)
+The backend for this project uses NodeJS and Express to serve the "/" route and various backend routes.
 
 ## Database
 
-The database for this project is MongoDB and this is hosted on Atlas(? Confirm hosting service), the mongoose library is also used to interact with the database in the backend when data needs to be read from or created in the database. To read more about how we set up and itneract with the database, [please visit our wiki page!](link-to-wiki-page-here)
+The project uses MongoDB for its database and this is hosted remotely on Atlas. Mongoose is used to translate data between the database and Express in the backend.
 
-## testing
+## Testing
 
-Due to the exploratory and experimental nature of this project testing has been limited to exemplars of how difficult to test behaviours should be tested. Frontend tests make use of the react testing library, wheareas the Backend tests only use Jest. To read more about our approaches to testing.... [please visit our wiki page!](link-to-wiki-page-here)
+Due to the exploratory and experimental nature of this project, testing was limited to exemplars of how difficult-to-test behaviours should be written. Backend tests use Jest, while those for the frontend also employ the React Testing Library.
 
-## hosting
+## Hosting
 
-The hosting service used for this project is Heroku, as they provide a free tier and also have excellent documentation and support for common issues when deploying.
-
-# example usage
+The project is hosted on Heroku, as they provide a free tier and have excellent documentation and support for common issues when deploying.
 
 # Challenges
 
@@ -124,22 +136,30 @@ As a team we encountered several challenges while working on this project:
 
 - Testing
 
-  - Testing in this project has been a challenge from the start. As we had chosen to work with new technologies that we hadn't seen before it proved to be a challenge to write tests to drive the development of our code, as we did not know how to express the desired behaviour in these new languages. As a group after spending some time trying to drive the development of the project through tests we decided that TDD/test coverage was secondary to learning these new technologies, so we agreed that we would manually test our code until our knowledge had reached a point where we were able to write tests for the desired behaviour. An example of this is testing sockets which has proven to be a real challenge, there is a dearth of documentation but after much trial and error we found a way to test sockets and wrote exemplars on how to test sockets on both the server side and client side.
+  - Testing was a challenge from the start. As we chose to work technologies that were new to us, it was extremely challenging to write tests to drive the development of our code, as we did not know how to express the desired behaviour
+
+  - As a group, after spending some time trying to drive the development of the project through tests, we decided that TDD/test coverage was secondary to learning these new technologies. We agreed that we would manually test our code until our knowledge had reached a point where we were able to write tests for the desired behaviour
+
+    An example of this was testing sockets, which was a real challenge as there was a lack of information online. However, after much trial and error we found a way to do this and wrote exemplars on how to test sockets on both the server and client side
 
 - Time
 
-  - Managing time over the course of the project has been a challenge as our final project coincided with the late May bank holiday meaning that we lost a day of project time, which really put the pressure on to achieve our MVP by the deadline we had set. Once we accepted that we didn't have to hold ourselves to these internal deadlines work went a lot smoother. In addition to this, to try and recoup some of the time lost due to the bank holiday some of the team agreed to work over a portion of the weekend.
+  - Managing time over the course of the project was a challenge as it coincided with the late May bank holiday. This meant we lost a day of project time, which really put pressure on us to achieve our minimum viable product(MVP) by the deadline we had set
+
+    Once we relaxed these deadlines work went a lot more smoothly. We were also able to make up some of the lost time by working to work over part of the middle weekend
 
 - Knowledge Sharing
 
-  - Knowledge sharing was a concern from the get-go, we knew that it was inevitable that some people would end up with higher knowledge levels in certain sections of the codebase than others, to try and combat this as effectively as possible we decided to frequently rotate pairs and to have code demos in our daily retros so that even if you didn't work on the code you were walked through what it did and how it did it and had an opportunity to ask questions about it. We also had every pull request reviewed by two team members who hadn't worked on the ticket prior to merging to ensure that: (A) the code was easy to read and (B) team members were exposed to the whole codebase as much as possible.
+  - Knowledge sharing was a concern from the get-go. We knew it was inevitable that some people would end up with higher knowledge levels in certain sections of the codebase than others. To combat this we frequently rotated pairs and had code demos in our daily retros so that even if you didn't work on the code you were walked through what it did and how it did it and had an opportunity to ask questions about it
 
-- Learning new Languages
-  - Learning a new language can be a challenge, but in this project it's been a really enjoyable experience, Our approach when learning new languages was to find the simplest thing we wanted to achieve in that language, research how to do that, implement the code and repeat that process until the feature we wanted to implement had been completed.
-  - For particularly challenging aspects such as the initial set up of sockets we would follow a tutorial on a test project to do something similar to the feature we want to implement and then use that new knowledge to build the feature in our project.
-  - People who had researched a particular aspect of a language in order to implement a feature would pair with those less familiar with that language to prevent any knowledge towers developing.
+    We also made sure every pull request was reviewed by two team members who hadn't worked on the ticket prior to merging to ensure the code was easy to read and that team members were exposed to the whole codebase as much as possible
 
-# Feature Roadmap
+- Learning new Languages and technologies
+  - Learning a new technologies can be a challenge, but in this project it was a really enjoyable experience. Our approach was to find the simplest thing we wanted to achieve, research how to do that, implement the code and repeat that process until the feature was completed
+  - For particularly challenging aspects such as the initial set up of sockets, we followed tutorials on test projects that achieved something similar, and then used the knowledge we'd gained to build the feature in our project
+  - People who had researched a particular aspect of a technology would pair with those less familiar to prevent any knowledge towers developing.
+
+# Feature Road Map
 
 This isn't the end of the story for WhatStack. To have a sneak peek at what we'll be working on for WhatStack in the future, [please visit our wiki page!](https://github.com/FayeCarter/WhatStack/wiki/Roadmap---User-Stories)
 
@@ -162,39 +182,10 @@ On the first day as a team we asked ourselves 9 questions and used these to make
 
 ## Agile workflow
 
-An essential part of this project was how we worked. We all agreed to follow an agile workflow, with 2 day sprints to track velocity. At the start of each sprint we would engage in a session of planning poker to determine as a group how difficult each feature would be to implement. At the beginning of each day we had a stand up to discuss previous blockers and potential blockers. At the end of each sprint we would have a slightly longer retro where we would discuss how we felt the team had fared over the course of the sprint and what we could do to address any problems that were identified.
+An essential part of this project was how we worked. We all agreed to follow an agile workflow with 2 day sprints to track velocity.
 
-< not 100% on this section, might need reworking>
+At the start of each sprint we agreed the features we were focusing on implementing, and used planning poker to estimate resource required to complete them.
 
----
+At the beginning of each day we held stand up meetings to discuss previous and potential blockers, progress, and plans for the day.
 
----
-
----
-
----
-
-## Running tests
-
-### E2E - Cypress
-
-```
-# from project root - without user interface
-npm run cypress:run
-
-# with user interface
-npm run cypress:open
-```
-
-### Front-end - React
-
-```
-# from client folder
-npm run test
-```
-
-## Getting started
-
-run npm install in both the root folder and client folder.
-
-allow VS code to do formatting on save
+At the end of each sprint we had a slightly longer retro where we discussed how we felt the team had fared during the sprint and what we could do to address any problems that were identified.
