@@ -116,7 +116,7 @@ The frontend for this project uses React to generate a Single Page Application s
 
 ## Backend
 
-The backend for this project uses NodeJS and Express to serve the "/" route and various backend routes.
+The backend for this project uses NodeJS and Express to serve the "/" route and various backend routes. We also used Auth0 to implement authorisation with a user's Github account.
 
 ## Database
 
