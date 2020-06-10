@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "lint": "eslint ./client/src/**/*.js index.js router.js ./models/**/*.js",

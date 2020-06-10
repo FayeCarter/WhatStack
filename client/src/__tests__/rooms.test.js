@@ -35,7 +35,7 @@ describe("Rooms", () => {
     expect(screen.getByText("Welcome to Whatstack ED")).toBeInTheDocument();
   });
 
-  describe("socket tests", () => {
+  describe.skip("socket tests", () => {
     let httpServer;
     let ioServer;
 
